@@ -11,8 +11,8 @@ class AccountScreen extends StatelessWidget {
       ),
       body: Container(
           child: Center(
-            child: Text("Account Screen"),
-          )),
+        child: Text("Account Screen"),
+      )),
     );
   }
 }

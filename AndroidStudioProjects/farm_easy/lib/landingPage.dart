@@ -5,9 +5,9 @@ import 'package:farmeasy/screens/settings.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatefulWidget {
-  final String email;
+  final String contactNumber;
 
-  LandingPage({Key key, @required this.email}) : super(key: key);
+  LandingPage({Key key, @required this.contactNumber}) : super(key: key);
   @override
   _LandingPageState createState() => _LandingPageState();
 }

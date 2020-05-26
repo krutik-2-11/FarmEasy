@@ -2,25 +2,21 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-
 class PageThree extends MaterialPageRoute<Null> {
   final String content;
   final int group = 1;
   PageThree(this.content)
       : super(builder: (BuildContext context) {
+          TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
-
-    TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-
-
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Create new account'),
-      ),
-      body: RegisterUser(),
-    );
-  });
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Create new account'),
+              backgroundColor: Color(0xFF4CAF50),
+            ),
+            body: RegisterUser(),
+          );
+        });
 }
 
 //class RadioButton extends StatefulWidget {
@@ -44,14 +40,11 @@ class PageThree extends MaterialPageRoute<Null> {
 //  }
 //}
 
-
 class RegisterUser extends StatefulWidget {
-
   RegisterUserState createState() => RegisterUserState();
-
 }
-class RegisterUserState extends State {
 
+class RegisterUserState extends State {
   // Boolean variable for CircularProgressIndicator.
   bool visible = false;
 
@@ -84,15 +77,21 @@ class RegisterUserState extends State {
     var url = 'https://farmeazy.000webhostapp.com/register_users.php';
 
     // Store all data with Param Name.
-    var data = {'full_name': name, 'gender': gender, 'personal_contact_number':personalContactNumber,
-      'gsm_contact_number' : gsmContactNumber, 'address': address, 'password': password};
+    var data = {
+      'full_name': name,
+      'gender': gender,
+      'personal_contact_number': personalContactNumber,
+      'gsm_contact_number': gsmContactNumber,
+      'address': address,
+      'password': password
+    };
 
     print('before API call');
     // Starting Web API Call.
     var response = await http.post(url, body: json.encode(data));
     print('after API call');
     print(response.toString());
-    print(response.body.toString()) ;
+    print(response.body.toString());
     print('after response.body.toString()');
     // Getting Server response into variable.
     var message = jsonDecode(response.body);
@@ -127,12 +126,24 @@ class RegisterUserState extends State {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
+      body: Container(
+
+        height: double.infinity,
+        width: double.infinity,
+
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: ExactAssetImage("images/bg5.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Center(
+              child: Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 32.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 32.0),
                 child: Center(
                   child: LayoutBuilder(
                     builder: (BuildContext context, BoxConstraints constraints) {
@@ -147,6 +158,7 @@ class RegisterUserState extends State {
                                   child: Text(
                                     "Name",
                                     textAlign: TextAlign.left,
+                                    style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 20),
                                   ),
                                 ),
                                 SizedBox(
@@ -154,7 +166,8 @@ class RegisterUserState extends State {
                                 ),
                                 Expanded(
                                   child: Container(
-                                    width: MediaQuery.of(context).size.width / 3.7,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3.7,
                                     color: Colors.blue[50],
                                     child: TextField(
                                       controller: nameController,
@@ -167,13 +180,15 @@ class RegisterUserState extends State {
                                           borderSide: BorderSide(
                                             color: Colors.blue[50],
                                           ),
-                                          borderRadius: BorderRadius.circular(5.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Colors.blue[50],
                                           ),
-                                          borderRadius: BorderRadius.circular(5.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
                                         ),
                                         hintText: "enter full name",
                                         fillColor: Colors.blue[50],
@@ -202,6 +217,7 @@ class RegisterUserState extends State {
                                   child: Text(
                                     "Contact Number",
                                     textAlign: TextAlign.left,
+                                    style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 18),
                                   ),
                                 ),
                                 SizedBox(
@@ -209,10 +225,11 @@ class RegisterUserState extends State {
                                 ),
                                 Expanded(
                                   child: Container(
-                                    width: MediaQuery.of(context).size.width / 3.7,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3.7,
                                     color: Colors.blue[50],
                                     child: TextField(
-                                      controller : personalContactNumberController,
+                                      controller: personalContactNumberController,
                                       style: TextStyle(
                                         fontSize: 15.0,
                                       ),
@@ -222,13 +239,15 @@ class RegisterUserState extends State {
                                           borderSide: BorderSide(
                                             color: Colors.blue[50],
                                           ),
-                                          borderRadius: BorderRadius.circular(5.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Colors.blue[50],
                                           ),
-                                          borderRadius: BorderRadius.circular(5.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
                                         ),
                                         hintText: "enter personal contact number",
                                         fillColor: Colors.blue[50],
@@ -250,15 +269,16 @@ class RegisterUserState extends State {
                                   child: Text(
                                     "GSM Contact Number",
                                     textAlign: TextAlign.left,
+                                    style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 18),
                                   ),
                                 ),
                                 SizedBox(
                                   width: 40.0,
                                 ),
-
                                 Expanded(
                                   child: Container(
-                                    width: MediaQuery.of(context).size.width / 3.7,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3.7,
                                     color: Colors.blue[50],
                                     child: TextField(
                                       controller: gsmContactNumberController,
@@ -271,13 +291,15 @@ class RegisterUserState extends State {
                                           borderSide: BorderSide(
                                             color: Colors.blue[50],
                                           ),
-                                          borderRadius: BorderRadius.circular(5.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Colors.blue[50],
                                           ),
-                                          borderRadius: BorderRadius.circular(5.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
                                         ),
                                         hintText: "enter GSM contact number",
                                         fillColor: Colors.blue[50],
@@ -297,17 +319,18 @@ class RegisterUserState extends State {
                                 Container(
                                   width: 80.0,
                                   child: Text(
-                                    "Permanent Address",
+                                    "Address",
                                     textAlign: TextAlign.left,
+                                    style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 20),
                                   ),
                                 ),
                                 SizedBox(
                                   width: 40.0,
                                 ),
-
                                 Expanded(
                                   child: Container(
-                                    width: MediaQuery.of(context).size.width / 3.7,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3.7,
                                     color: Colors.blue[50],
                                     child: TextField(
                                       controller: addressController,
@@ -320,13 +343,15 @@ class RegisterUserState extends State {
                                           borderSide: BorderSide(
                                             color: Colors.blue[50],
                                           ),
-                                          borderRadius: BorderRadius.circular(5.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Colors.blue[50],
                                           ),
-                                          borderRadius: BorderRadius.circular(5.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
                                         ),
                                         hintText: "enter permanent address",
                                         fillColor: Colors.blue[50],
@@ -348,15 +373,16 @@ class RegisterUserState extends State {
                                   child: Text(
                                     "Password",
                                     textAlign: TextAlign.left,
+                                    style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 18),
                                   ),
                                 ),
                                 SizedBox(
                                   width: 40.0,
                                 ),
-
                                 Expanded(
                                   child: Container(
-                                    width: MediaQuery.of(context).size.width / 3.7,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3.7,
                                     color: Colors.blue[50],
                                     child: TextField(
                                       controller: passwordController,
@@ -369,13 +395,15 @@ class RegisterUserState extends State {
                                           borderSide: BorderSide(
                                             color: Colors.blue[50],
                                           ),
-                                          borderRadius: BorderRadius.circular(5.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Colors.blue[50],
                                           ),
-                                          borderRadius: BorderRadius.circular(5.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
                                         ),
                                         hintText: "enter password",
                                         fillColor: Colors.blue[50],
@@ -397,6 +425,7 @@ class RegisterUserState extends State {
                                   child: Text(
                                     "Re-enter Password",
                                     textAlign: TextAlign.left,
+                                    style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 18),
                                   ),
                                 ),
                                 SizedBox(
@@ -405,7 +434,8 @@ class RegisterUserState extends State {
 
                                 Expanded(
                                   child: Container(
-                                    width: MediaQuery.of(context).size.width / 3.7,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3.7,
                                     color: Colors.blue[50],
                                     child: TextField(
                                       controller: reEnterPasswordController,
@@ -418,13 +448,15 @@ class RegisterUserState extends State {
                                           borderSide: BorderSide(
                                             color: Colors.blue[50],
                                           ),
-                                          borderRadius: BorderRadius.circular(5.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Colors.blue[50],
                                           ),
-                                          borderRadius: BorderRadius.circular(5.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
                                         ),
                                         hintText: "re enter password",
                                         fillColor: Colors.blue[50],
@@ -434,35 +466,27 @@ class RegisterUserState extends State {
                                 ),
 
                                 //Sign up button
-
-
-
-
-
-
                               ],
                             ),
                             SizedBox(
                               height: 10.0,
                             ),
 
-                      RaisedButton(
-                        onPressed: userRegistration,
-                        color: Colors.lightGreenAccent,
-                        textColor: Colors.white,
-                        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                        child: Text('sign up'),
-
-                      ),
+                            RaisedButton(
+                              onPressed: userRegistration,
+                              color: Colors.green,
+                              textColor: Colors.black,
+                              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                              child: Text('sign up'),
+                            ),
 
                             Visibility(
                               visible: visible,
                               child: Container(
-                                margin: EdgeInsets.only(bottom:30),
+                                margin: EdgeInsets.only(bottom: 30),
                                 child: CircularProgressIndicator(),
                               ),
                             ),
-
                           ],
                         ),
                       );
@@ -471,12 +495,11 @@ class RegisterUserState extends State {
                 ),
               ),
             ],
-          )
+          )),
         ),
       ),
     );
   }
-
 }
 
 class GenderRow extends StatefulWidget {
@@ -494,12 +517,12 @@ class _GenderRowState extends State<GenderRow> {
         child: Text(
           "Gender",
           textAlign: TextAlign.left,
+          style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 20),
         ),
       ),
       SizedBox(
         width: 40.0,
       ),
-
       Text("Male"),
       Radio(
         value: 1,
@@ -531,4 +554,3 @@ class _GenderRowState extends State<GenderRow> {
     ]);
   }
 }
-
