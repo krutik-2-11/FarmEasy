@@ -11,6 +11,7 @@ void main() => runApp(MaterialApp(
     ));
 
 class MyApp extends StatelessWidget {
+
   static const String routeName = "./";
   @override
   Widget build(BuildContext context) {
@@ -24,6 +25,8 @@ class MyApp extends StatelessWidget {
 
             body: Center(child: LoginUser())));
   }
+
+  MyApp();
 }
 
 class LoginUser extends StatefulWidget {
@@ -64,12 +67,10 @@ class LoginUserState extends State {
     var message = jsonDecode(response.body);
 
     print(message);
-    print(message['id']);
-    print(message['module_id']);
+//    print(message['id']);
+//    print(message['module_id']);
 
-    globals.temperature = message["temperature"].toString();
-    globals.humidity = message["humidity"].toString();
-    globals.moisture = message["moisture"].toString();
+
 
     // If the Response Message is Matched.
     if (message != "Invalid contact_number or Password Please Try Again") {
@@ -77,6 +78,9 @@ class LoginUserState extends State {
       setState(() {
         visible = false;
       });
+      globals.temperature = message["temperature"].toString();
+      globals.humidity = message["humidity"].toString();
+      globals.moisture = message["moisture"].toString();
 
       // Navigate to Profile Screen & Sending Email to Next Screen.
       Navigator.push(
@@ -87,6 +91,7 @@ class LoginUserState extends State {
     } else {
       // If Email or Password did not Matched.
       // Hiding the CircularProgressIndicator.
+      print('Debugggggg1');
       setState(() {
         visible = false;
       });
@@ -197,6 +202,7 @@ class LoginUserState extends State {
                           )),
 
                 )),
+
             RaisedButton(
               onPressed: userLogin,
               color: Colors.green,
