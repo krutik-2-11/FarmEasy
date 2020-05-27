@@ -1,12 +1,12 @@
-import 'package:farmeasy/main.dart';
-import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class PageThree extends MaterialPageRoute<Null> {
   final String content;
   final int group = 1;
+
   PageThree(this.content)
       : super(builder: (BuildContext context) {
           TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
@@ -21,20 +21,20 @@ class PageThree extends MaterialPageRoute<Null> {
         });
 }
 
-
 class RegisterUser extends StatefulWidget {
   RegisterUserState createState() => RegisterUserState();
 }
 
 class RegisterUserState extends State<RegisterUser> {
-
   bool validateName(String name) {
-    if(name == null){
+    if (name == null) {
       return true;
     }
     return false;
   }
+
   final _formKey = GlobalKey<FormState>();
+
   // Boolean variable for CircularProgressIndicator.
   bool isVisibleName = false;
   bool isVisibleContactNumber = false;
@@ -44,7 +44,7 @@ class RegisterUserState extends State<RegisterUser> {
   bool isVisibleReEnterPassword = false;
   bool visible = false;
 
-  bool validateFields(){
+  bool validateFields() {
     isVisibleName = false;
     isVisibleContactNumber = false;
     isVisibleGSMNumber = false;
@@ -53,29 +53,31 @@ class RegisterUserState extends State<RegisterUser> {
     isVisibleReEnterPassword = false;
     String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
     RegExp regExp = new RegExp(pattern);
-    if(nameController.text.length == 0)
-      isVisibleName = true;
+    if (nameController.text.length == 0) isVisibleName = true;
 
-    if(!regExp.hasMatch(personalContactNumberController.text))
+    if (!regExp.hasMatch(personalContactNumberController.text))
       isVisibleContactNumber = true;
 
-    if(!regExp.hasMatch(gsmContactNumberController.text))
+    if (!regExp.hasMatch(gsmContactNumberController.text))
       isVisibleGSMNumber = true;
 
-    if(addressController.text.length == 0)
-      isVisibleAddress = true;
+    if (addressController.text.length == 0) isVisibleAddress = true;
 
-    if(passwordController.text.length == 0)
-      isVisiblePassword = true;
+    if (passwordController.text.length == 0) isVisiblePassword = true;
 
-    if(passwordController.text != reEnterPasswordController.text)
+    if (passwordController.text != reEnterPasswordController.text)
       isVisibleReEnterPassword = true;
 
-    return (isVisibleName || isVisibleContactNumber || isVisibleGSMNumber
-            || isVisibleAddress ||  isVisiblePassword || isVisibleReEnterPassword);
-
+    return (isVisibleName ||
+        isVisibleContactNumber ||
+        isVisibleGSMNumber ||
+        isVisibleAddress ||
+        isVisiblePassword ||
+        isVisibleReEnterPassword);
   }
+
   bool _validate = false;
+
   // Getting value from TextField widget.
   final nameController = TextEditingController();
   final genderController = TextEditingController();
@@ -103,8 +105,7 @@ class RegisterUserState extends State<RegisterUser> {
     String password = passwordController.text;
     String reEnteredPassword = reEnterPasswordController.text;
 
-
-    if(!validateFields()){
+    if (!validateFields()) {
       print(isVisibleName);
       // SERVER API URL
       var url = 'https://farmeazy.000webhostapp.com/register_users.php';
@@ -136,7 +137,6 @@ class RegisterUserState extends State<RegisterUser> {
         });
       }
 
-
       // Showing Alert Dialog with Response JSON Message.
       showDialog(
         context: context,
@@ -155,22 +155,17 @@ class RegisterUserState extends State<RegisterUser> {
                   passwordController.clear();
                   reEnterPasswordController.clear();
                   Navigator.of(context).pop();
-
                 },
               ),
             ],
           );
         },
       );
-
-    }
-
-    else {
+    } else {
       setState(() {
         visible = false;
       });
     }
-
   }
 
   @override
@@ -180,10 +175,8 @@ class RegisterUserState extends State<RegisterUser> {
       key: _formKey,
       child: Scaffold(
         body: Container(
-
           height: double.infinity,
           width: double.infinity,
-
           decoration: BoxDecoration(
             image: DecorationImage(
               image: ExactAssetImage("images/bg5.png"),
@@ -195,11 +188,12 @@ class RegisterUserState extends State<RegisterUser> {
                 child: Column(
               children: <Widget>[
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10.0, horizontal: 32.0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 32.0),
                   child: Center(
                     child: LayoutBuilder(
-                      builder: (BuildContext context, BoxConstraints constraints) {
+                      builder:
+                          (BuildContext context, BoxConstraints constraints) {
                         return SingleChildScrollView(
                           child: Column(
                             children: <Widget>[
@@ -211,7 +205,10 @@ class RegisterUserState extends State<RegisterUser> {
                                     child: Text(
                                       "Name",
                                       textAlign: TextAlign.left,
-                                      style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 20),
+                                      style: TextStyle(
+                                          color: Colors.brown,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
                                     ),
                                   ),
                                   SizedBox(
@@ -219,8 +216,8 @@ class RegisterUserState extends State<RegisterUser> {
                                   ),
                                   Expanded(
                                     child: Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 3.7,
+                                      width: MediaQuery.of(context).size.width /
+                                          3.7,
                                       color: Colors.blue[50],
                                       child: TextFormField(
                                         controller: nameController,
@@ -245,9 +242,7 @@ class RegisterUserState extends State<RegisterUser> {
                                           ),
                                           hintText: "enter full name",
                                           fillColor: Colors.blue[50],
-
                                         ),
-
                                       ),
                                     ),
                                   ),
@@ -258,11 +253,13 @@ class RegisterUserState extends State<RegisterUser> {
                               ),
                               Visibility(
                                 visible: isVisibleName,
-                                child: Text("Name can't be empty!!",
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                  color: Colors.red[800],
-                                ),),
+                                child: Text(
+                                  "Name can't be empty!!",
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    color: Colors.red[800],
+                                  ),
+                                ),
                               ),
                               //Gender
                               GenderRow(),
@@ -277,7 +274,10 @@ class RegisterUserState extends State<RegisterUser> {
                                     child: Text(
                                       "Contact Number",
                                       textAlign: TextAlign.left,
-                                      style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 18),
+                                      style: TextStyle(
+                                          color: Colors.brown,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
                                     ),
                                   ),
                                   SizedBox(
@@ -285,11 +285,12 @@ class RegisterUserState extends State<RegisterUser> {
                                   ),
                                   Expanded(
                                     child: Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 3.7,
+                                      width: MediaQuery.of(context).size.width /
+                                          3.7,
                                       color: Colors.blue[50],
                                       child: TextField(
-                                        controller: personalContactNumberController,
+                                        controller:
+                                            personalContactNumberController,
                                         style: TextStyle(
                                           fontSize: 15.0,
                                         ),
@@ -309,9 +310,12 @@ class RegisterUserState extends State<RegisterUser> {
                                             borderRadius:
                                                 BorderRadius.circular(5.0),
                                           ),
-                                          hintText: "enter personal contact number",
+                                          hintText:
+                                              "enter personal contact number",
                                           fillColor: Colors.blue[50],
-                                          errorText: _validate ? 'Value Can\'t Be Empty' : null,
+                                          errorText: _validate
+                                              ? 'Value Can\'t Be Empty'
+                                              : null,
                                         ),
                                       ),
                                     ),
@@ -323,14 +327,14 @@ class RegisterUserState extends State<RegisterUser> {
                                 height: 5.0,
                               ),
                               Visibility(
-                                visible: isVisibleContactNumber,
-                                child: Text("Invalid contact number!!",
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                  color: Colors.red[800],
-                                ),)
-
-                              ),
+                                  visible: isVisibleContactNumber,
+                                  child: Text(
+                                    "Invalid contact number!!",
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                      color: Colors.red[800],
+                                    ),
+                                  )),
 
                               //GSM Contact Number
                               Row(
@@ -340,17 +344,19 @@ class RegisterUserState extends State<RegisterUser> {
                                     child: Text(
                                       "GSM Contact Number",
                                       textAlign: TextAlign.left,
-                                      style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 18),
+                                      style: TextStyle(
+                                          color: Colors.brown,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
                                     ),
                                   ),
-
                                   SizedBox(
                                     width: 40.0,
                                   ),
                                   Expanded(
                                     child: Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 3.7,
+                                      width: MediaQuery.of(context).size.width /
+                                          3.7,
                                       color: Colors.blue[50],
                                       child: TextField(
                                         controller: gsmContactNumberController,
@@ -386,12 +392,12 @@ class RegisterUserState extends State<RegisterUser> {
                               ),
                               Visibility(
                                 visible: isVisibleGSMNumber,
-                                child: Text("Invalid GSM number!!",
+                                child: Text(
+                                  "Invalid GSM number!!",
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
                                     color: Colors.red[800],
                                   ),
-
                                 ),
                               ),
                               //Address
@@ -402,7 +408,10 @@ class RegisterUserState extends State<RegisterUser> {
                                     child: Text(
                                       "Address",
                                       textAlign: TextAlign.left,
-                                      style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 20),
+                                      style: TextStyle(
+                                          color: Colors.brown,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
                                     ),
                                   ),
                                   SizedBox(
@@ -410,8 +419,8 @@ class RegisterUserState extends State<RegisterUser> {
                                   ),
                                   Expanded(
                                     child: Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 3.7,
+                                      width: MediaQuery.of(context).size.width /
+                                          3.7,
                                       color: Colors.blue[50],
                                       child: TextField(
                                         controller: addressController,
@@ -447,7 +456,8 @@ class RegisterUserState extends State<RegisterUser> {
                               ),
                               Visibility(
                                 visible: isVisibleAddress,
-                                child: Text("Address can't be empty!!",
+                                child: Text(
+                                  "Address can't be empty!!",
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
                                     color: Colors.red[800],
@@ -462,7 +472,10 @@ class RegisterUserState extends State<RegisterUser> {
                                     child: Text(
                                       "Password",
                                       textAlign: TextAlign.left,
-                                      style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 18),
+                                      style: TextStyle(
+                                          color: Colors.brown,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
                                     ),
                                   ),
                                   SizedBox(
@@ -470,8 +483,8 @@ class RegisterUserState extends State<RegisterUser> {
                                   ),
                                   Expanded(
                                     child: Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 3.7,
+                                      width: MediaQuery.of(context).size.width /
+                                          3.7,
                                       color: Colors.blue[50],
                                       child: TextField(
                                         controller: passwordController,
@@ -507,7 +520,8 @@ class RegisterUserState extends State<RegisterUser> {
                               ),
                               Visibility(
                                 visible: isVisiblePassword,
-                                child: Text("Password can't be empty!!",
+                                child: Text(
+                                  "Password can't be empty!!",
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
                                     color: Colors.red[800],
@@ -522,7 +536,10 @@ class RegisterUserState extends State<RegisterUser> {
                                     child: Text(
                                       "Re-enter Password",
                                       textAlign: TextAlign.left,
-                                      style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 18),
+                                      style: TextStyle(
+                                          color: Colors.brown,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
                                     ),
                                   ),
                                   SizedBox(
@@ -531,8 +548,8 @@ class RegisterUserState extends State<RegisterUser> {
 
                                   Expanded(
                                     child: Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 3.7,
+                                      width: MediaQuery.of(context).size.width /
+                                          3.7,
                                       color: Colors.blue[50],
                                       child: TextField(
                                         controller: reEnterPasswordController,
@@ -570,12 +587,12 @@ class RegisterUserState extends State<RegisterUser> {
                               ),
                               Visibility(
                                 visible: isVisibleReEnterPassword,
-                                child: Text("Passwords do not match!!",
+                                child: Text(
+                                  "Passwords do not match!!",
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
                                     color: Colors.red[800],
                                   ),
-
                                 ),
                               ),
                               RaisedButton(
@@ -584,7 +601,6 @@ class RegisterUserState extends State<RegisterUser> {
                                 textColor: Colors.black,
                                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                                 child: Text('sign up'),
-
                               ),
 
                               Visibility(
@@ -617,6 +633,7 @@ class GenderRow extends StatefulWidget {
 
 class _GenderRowState extends State<GenderRow> {
   int group = 1;
+
   @override
   Widget build(BuildContext context) {
     return Row(children: <Widget>[
@@ -625,7 +642,8 @@ class _GenderRowState extends State<GenderRow> {
         child: Text(
           "Gender",
           textAlign: TextAlign.left,
-          style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold,fontSize: 20),
+          style: TextStyle(
+              color: Colors.brown, fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),
       SizedBox(

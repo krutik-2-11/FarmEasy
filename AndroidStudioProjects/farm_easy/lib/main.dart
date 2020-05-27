@@ -1,9 +1,10 @@
+import 'dart:convert';
+
 import 'package:farmeasy/landingPage.dart';
 import 'package:farmeasy/signUpPage.dart';
 import 'package:flutter/material.dart';
-
-import 'dart:convert';
 import 'package:http/http.dart' as http;
+
 import 'globals.dart' as globals;
 
 void main() => runApp(MaterialApp(
@@ -11,18 +12,15 @@ void main() => runApp(MaterialApp(
     ));
 
 class MyApp extends StatelessWidget {
-
   static const String routeName = "./";
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-
-
             appBar: AppBar(
                 backgroundColor: Color(0xFF4CAF50),
                 title: Text('User Login Form')),
-
             body: Center(child: LoginUser())));
   }
 
@@ -69,8 +67,6 @@ class LoginUserState extends State {
     print(message);
 //    print(message['id']);
 //    print(message['module_id']);
-
-
 
     // If the Response Message is Matched.
     if (message != "Invalid contact_number or Password Please Try Again") {
@@ -128,25 +124,20 @@ class LoginUserState extends State {
     );
 
     return Scaffold(
-      //backgroundColor: Color(0xFF9E9E9E),
+        //backgroundColor: Color(0xFF9E9E9E),
 //        backgroundColor: Color(0xFF4CAF50),
         body: Container(
-
-          height: double.infinity,
-          width: double.infinity,
-
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: ExactAssetImage("images/bg5.png"),
-                fit: BoxFit.cover,
-            ),
-          ),
-          child: SingleChildScrollView(
-
-              child: Center(
-
-      child: Column(
-
+      height: double.infinity,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: ExactAssetImage("images/bg5.png"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: SingleChildScrollView(
+          child: Center(
+        child: Column(
           children: <Widget>[
             SizedBox(
               height: 40.0,
@@ -160,31 +151,28 @@ class LoginUserState extends State {
 //            ),
             Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Text('User Login Form', style: TextStyle(
-                  fontSize: 40,
-                  foreground: Paint()
-                    ..style = PaintingStyle.stroke
-                    ..strokeWidth = 3
-                    ..color = Colors.brown[700],
-
-                ))),
+                child: Text('User Login Form',
+                    style: TextStyle(
+                      fontSize: 40,
+                      foreground: Paint()
+                        ..style = PaintingStyle.stroke
+                        ..strokeWidth = 3
+                        ..color = Colors.brown[700],
+                    ))),
             Divider(),
             SizedBox(height: 40),
             Container(
                 width: 280,
                 padding: EdgeInsets.all(10.0),
                 child: TextField(
-
                   controller: personalContactController,
                   autocorrect: true,
-                  decoration:
-                  InputDecoration(
-                    hintText: 'Enter Your Contact Number Here',
-                      hintStyle: TextStyle(fontSize: 20.0, color: Colors.black87),
-                      labelStyle: new TextStyle(
-                          color: const Color(0xFF000000)
-                      )
-                  ),
+                  decoration: InputDecoration(
+                      hintText: 'Enter Your Contact Number Here',
+                      hintStyle:
+                          TextStyle(fontSize: 20.0, color: Colors.black87),
+                      labelStyle:
+                          new TextStyle(color: const Color(0xFF000000))),
                 )),
             Container(
                 width: 280,
@@ -193,14 +181,12 @@ class LoginUserState extends State {
                   controller: passwordController,
                   autocorrect: true,
                   obscureText: true,
-                  decoration:
-                      InputDecoration(
-                          hintText: 'Enter Your Password Here',
-                          hintStyle: TextStyle(fontSize: 20.0, color: Colors.black87),
-                          labelStyle: new TextStyle(
-                              color: const Color(0xFF000000)
-                          )),
-
+                  decoration: InputDecoration(
+                      hintText: 'Enter Your Password Here',
+                      hintStyle:
+                          TextStyle(fontSize: 20.0, color: Colors.black87),
+                      labelStyle:
+                          new TextStyle(color: const Color(0xFF000000))),
                 )),
 
             RaisedButton(
@@ -220,9 +206,9 @@ class LoginUserState extends State {
                     margin: EdgeInsets.only(bottom: 30),
                     child: CircularProgressIndicator())),
           ],
-      ),
-    )),
-        ));
+        ),
+      )),
+    ));
   }
 }
 

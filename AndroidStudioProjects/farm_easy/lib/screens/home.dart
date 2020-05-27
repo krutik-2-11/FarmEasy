@@ -1,12 +1,13 @@
+import 'package:farmeasy/globals.dart' as globals;
 import 'package:farmeasy/main.dart';
 import 'package:farmeasy/screens/settings.dart';
 import 'package:flutter/material.dart';
 
 import 'account.dart';
-import 'package:farmeasy/globals.dart' as globals;
 
 class HomeScreen extends StatefulWidget {
   final String email;
+
   HomeScreen({Key key, @required this.email}) : super(key: key);
 
   @override
@@ -14,10 +15,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-
   var temperature = globals.temperature;
   var humidity = globals.humidity;
   var moisture = globals.moisture;
+
   Drawer getNavDrawer(BuildContext context) {
     var headerChild = DrawerHeader(child: Text("Header"));
     var aboutChild = AboutListTile(
@@ -61,105 +62,99 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: Color(0xFF4CAF50),
         title: Text("Your Current Readings"),
       ),
       body: Container(
-
-
-    height: double.infinity,
-    width: double.infinity,
-
-    decoration: BoxDecoration(
-    image: DecorationImage(
-    image: ExactAssetImage("images/bg5.png"),
-
-    )),
+          height: double.infinity,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: ExactAssetImage("images/bg5.png"),
+          )),
 //        color: Color(0xFF263238),
           child: Center(
-          child: Column(
-            children: <Widget>[
-              const SizedBox(height: 30),
-              ButtonTheme(
-                minWidth: 50.0,
-                height: 150.0,
-                buttonColor: Color(0xFFD50000),
-
-                child: RaisedButton(
-                  onPressed: () {},
-                  textColor: Colors.white,
-                  padding: const EdgeInsets.all(0.0),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: <Color>[
-                          Color(0xFFD50000),
-                          Color(0xFFD50000),
-                          Color(0xFFD50000),
-                        ],
+            child: Column(
+              children: <Widget>[
+                const SizedBox(height: 30),
+                ButtonTheme(
+                  minWidth: 50.0,
+                  height: 150.0,
+                  buttonColor: Color(0xFFD50000),
+                  child: RaisedButton(
+                    onPressed: () {},
+                    textColor: Colors.white,
+                    padding: const EdgeInsets.all(0.0),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: <Color>[
+                            Color(0xFFD50000),
+                            Color(0xFFD50000),
+                            Color(0xFFD50000),
+                          ],
+                        ),
                       ),
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text("Temperature: " + temperature + "C",
+                          style: TextStyle(fontSize: 40)),
                     ),
-                    padding: const EdgeInsets.all(10.0),
-                    child:
-                    Text("Temperature: "  + temperature + "C", style: TextStyle(fontSize: 40)),
                   ),
                 ),
-              ),
-              const SizedBox(height: 30),
-              ButtonTheme(
-                minWidth: 50.0,
-                height: 150.0,
-                buttonColor: Color(0xffffd600),
-                child: RaisedButton(
-                  onPressed: () {},
-                  textColor: Colors.white,
-                  padding: const EdgeInsets.all(0.0),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: <Color>[
-                          Color(0xffffd600),
-                          Color(0xffffd600),
-                          Color(0xffffd600),
-                       ],
+                const SizedBox(height: 30),
+                ButtonTheme(
+                  minWidth: 50.0,
+                  height: 150.0,
+                  buttonColor: Color(0xffffd600),
+                  child: RaisedButton(
+                    onPressed: () {},
+                    textColor: Colors.white,
+                    padding: const EdgeInsets.all(0.0),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: <Color>[
+                            Color(0xffffd600),
+                            Color(0xffffd600),
+                            Color(0xffffd600),
+                          ],
+                        ),
                       ),
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text('Humidity       : ' + humidity + "%",
+                          style: TextStyle(fontSize: 40)),
                     ),
-                    padding: const EdgeInsets.all(10.0),
-                    child:
-                    Text('Humidity       : ' + humidity + "%", style: TextStyle(fontSize: 40)),
                   ),
                 ),
-              ),
-              const SizedBox(height: 30),
-              ButtonTheme(
-                minWidth: 50.0,
-                height: 150.0,
-                buttonColor: Color(0xFF1976D2),
-                child: RaisedButton(
-                  onPressed: () {},
-                  textColor: Colors.white,
-                  padding: const EdgeInsets.all(0.0),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: <Color>[
-                          Color(0xFF1976D2),
-                          Color(0xFF1976D2),
-                          Color(0xFF1976D2),
-                        ],
+                const SizedBox(height: 30),
+                ButtonTheme(
+                  minWidth: 50.0,
+                  height: 150.0,
+                  buttonColor: Color(0xFF1976D2),
+                  child: RaisedButton(
+                    onPressed: () {},
+                    textColor: Colors.white,
+                    padding: const EdgeInsets.all(0.0),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: <Color>[
+                            Color(0xFF1976D2),
+                            Color(0xFF1976D2),
+                            Color(0xFF1976D2),
+                          ],
+                        ),
                       ),
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text('Moisture       : ' + moisture + "%",
+                          style: TextStyle(fontSize: 40)),
                     ),
-                    padding: const EdgeInsets.all(10.0),
-                    child:
-                    Text('Moisture       : ' + moisture + "%", style: TextStyle(fontSize: 40)),
                   ),
                 ),
-              ),
-            ],
-          ),
-      )),
+              ],
+            ),
+          )),
       // Set the nav drawer
       drawer: getNavDrawer(context),
     );

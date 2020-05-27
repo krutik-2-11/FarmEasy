@@ -8,6 +8,7 @@ class LandingPage extends StatefulWidget {
   final String contactNumber;
 
   LandingPage({Key key, @required this.contactNumber}) : super(key: key);
+
   @override
   _LandingPageState createState() => _LandingPageState();
 }
