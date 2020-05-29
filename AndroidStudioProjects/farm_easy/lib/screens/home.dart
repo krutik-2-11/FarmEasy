@@ -18,7 +18,7 @@ class HomeScreenState extends State<HomeScreen> {
   var temperature = globals.temperature;
   var humidity = globals.humidity;
   var moisture = globals.moisture;
-
+  bool isSwitched = false;
   Drawer getNavDrawer(BuildContext context) {
     var headerChild = DrawerHeader(child: Text("Header"));
     var aboutChild = AboutListTile(
@@ -97,7 +97,7 @@ class HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       padding: const EdgeInsets.all(10.0),
-                      child: Text("Temperature: " + temperature + "C",
+                      child: Text("Temperature: " + temperature + "\u2103",
                           style: TextStyle(fontSize: 40)),
                     ),
                   ),
@@ -149,6 +149,23 @@ class HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: Text('Moisture       : ' + moisture + "%",
                           style: TextStyle(fontSize: 40)),
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Transform.scale(
+                    scale: 2.0,
+                    child: Switch(
+                      value: isSwitched,
+                      onChanged: (value) {
+                        setState(() {
+                          isSwitched=value;
+                          print(isSwitched);
+                        });
+                      },
+                      activeTrackColor: Colors.greenAccent,
+                      activeColor: Colors.green,
+
                     ),
                   ),
                 ),

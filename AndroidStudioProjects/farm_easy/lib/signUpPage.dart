@@ -262,7 +262,7 @@ class RegisterUserState extends State<RegisterUser> {
                                 ),
                               ),
                               //Gender
-                              GenderRow(),
+                              //GenderRow(),
 
                               SizedBox(
                                 height: 10.0,
@@ -335,6 +335,9 @@ class RegisterUserState extends State<RegisterUser> {
                                       color: Colors.red[800],
                                     ),
                                   )),
+                              SizedBox(
+                                height: 10.0,
+                              ),
 
                               //GSM Contact Number
                               Row(
@@ -400,6 +403,9 @@ class RegisterUserState extends State<RegisterUser> {
                                   ),
                                 ),
                               ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
                               //Address
                               Row(
                                 children: <Widget>[
@@ -464,6 +470,9 @@ class RegisterUserState extends State<RegisterUser> {
                                   ),
                                 ),
                               ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
                               //Password
                               Row(
                                 children: <Widget>[
@@ -471,8 +480,10 @@ class RegisterUserState extends State<RegisterUser> {
                                     width: 80.0,
                                     child: Text(
                                       "Password",
+
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
+
                                           color: Colors.brown,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18),
@@ -488,6 +499,7 @@ class RegisterUserState extends State<RegisterUser> {
                                       color: Colors.blue[50],
                                       child: TextField(
                                         controller: passwordController,
+                                        obscureText: true,
                                         style: TextStyle(
                                           fontSize: 15.0,
                                         ),
@@ -528,6 +540,9 @@ class RegisterUserState extends State<RegisterUser> {
                                   ),
                                 ),
                               ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
                               //Reenter Password
                               Row(
                                 children: <Widget>[
@@ -553,6 +568,7 @@ class RegisterUserState extends State<RegisterUser> {
                                       color: Colors.blue[50],
                                       child: TextField(
                                         controller: reEnterPasswordController,
+                                        obscureText: true,
                                         style: TextStyle(
                                           fontSize: 15.0,
                                         ),
@@ -594,6 +610,9 @@ class RegisterUserState extends State<RegisterUser> {
                                     color: Colors.red[800],
                                   ),
                                 ),
+                              ),
+                              SizedBox(
+                                height: 10.0,
                               ),
                               RaisedButton(
                                 onPressed: userRegistration,

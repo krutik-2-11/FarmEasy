@@ -8,10 +8,11 @@ import 'package:http/http.dart' as http;
 import 'globals.dart' as globals;
 
 void main() => runApp(MaterialApp(
-      home: MyApp(),
-    ));
+  home: MyApp(),
+));
 
 class MyApp extends StatelessWidget {
+
   static const String routeName = "./";
 
   @override
